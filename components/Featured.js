@@ -12,6 +12,7 @@ const Bg = styled.div`
 const Title = styled.h1`
   margin: 0;
   font-weight: normal;
+  font-size: 3rem;
 `;
 
 const Description = styled.p`
@@ -36,26 +37,26 @@ const Column = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  gap: 5px;
+  gap: 10px;
+  margin-top: 25px;
 `;
 
-export default function Featured() {
+export default function Featured({product}) {
   return (
     <Bg>
       <Center>
         <ColumnsWrapper>
           <Column>
             <div>
-              <Title>Pro Anywhere</Title>
+              <Title>{product.title}</Title>
               <Description>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                {product.description}
               </Description>
               <ButtonWrapper>
-                <Button white outline size="l">
+                <Button white outline >
                   Read More
                 </Button>
-                <Button primary size="l">
+                <Button primary >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -71,7 +72,7 @@ export default function Featured() {
           </Column>
           <Column>
             <img
-              src="https://www.cnet.com/a/img/resize/e7a7d38637f013c251d7e6428516404351e38626/hub/2017/06/21/f7b9d886-a558-4fe2-87b2-6dded4e71411/apple-macbook-12-inch-2017-05.jpg?auto=webp&width=1200"
+              src={product.images[0]}
               alt="temporary image"
             />
           </Column>
