@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 
-const StyledButton = styled.button`
+export const ButtonStyle = css`
   cursor: pointer;
   padding: 5px 15px;
   border: 0;
   border-radius: 5px;
   display: inline-flex;
-  svg{
+  text-decoration: none;
+  svg {
     height: 16px;
     margin-right: 5px;
   }
@@ -37,10 +38,14 @@ const StyledButton = styled.button`
     css`
       font-size: 1.2rem;
       padding: 10px 20px;
-      svg{
+      svg {
         height: 20px;
       }
     `}
+`;
+
+const StyledButton = styled.button`
+  ${ButtonStyle}
 `;
 
 export default function Button({ children, ...rest }) {
