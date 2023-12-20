@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { primaryColor } from "@/lib/colors";
 
 export const ButtonStyle = css`
   cursor: pointer;
@@ -6,7 +7,15 @@ export const ButtonStyle = css`
   border: 0;
   border-radius: 5px;
   display: inline-flex;
+  align-items: center;
   text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
   svg {
     height: 16px;
     margin-right: 5px;
@@ -28,10 +37,20 @@ export const ButtonStyle = css`
     `}
   ${(props) =>
     props.primary &&
+    !props.outline &&
     css`
-      background-color: #5542f6;
+      background-color: ${primaryColor};
       color: #fff;
-      border: 1px solid #5541f6;
+      border: 1px solid ${primaryColor};
+    `}
+
+    ${(props) =>
+    props.primary &&
+    props.outline &&
+    css`
+      background-color: transparent;
+      color: ${primaryColor};
+      border: 1px solid ${primaryColor};
     `}
   ${(props) =>
     props.size === "l" &&

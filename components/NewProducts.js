@@ -1,30 +1,43 @@
+/* eslint-disable @next/next/no-img-element */
 import styled from "styled-components";
+import Center from "./Center";
+import ProductBox from "./ProductBox";
 
-const StyledUl = styled.ul`
-    display: flex;
-    background-color: green;
-    height: 350px;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
-    img {
-        width: 200px;
-        height: auto;
-        object-fit: contain;
-    }
-    li {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-    }
+const StyledGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  padding-top: 30px;
 `;
 
-export default function NewProducts({newProducts}) {
+const StyledUl = styled.ul`
+  display: flex;
+  background-color: green;
+  height: 350px;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  img {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export default function NewProducts({ newProducts }) {
   return (
-    <StyledUl>
-        {newProducts && newProducts.map(newProduct => (
-            <li key={newProduct._id}><h1>{newProduct.title}</h1><img src={newProduct.images[0]} alt={newProduct.title}/></li>
-        ))}
-    </StyledUl>
+    <Center>
+      <StyledGrid>
+        {newProducts &&
+          newProducts.map((newProduct) => (
+            <ProductBox key={newProduct._id} {...newProduct} />
+          ))}
+      </StyledGrid>
+    </Center>
   );
 }
