@@ -3,41 +3,28 @@ import styled from "styled-components";
 import Center from "./Center";
 import ProductBox from "./ProductBox";
 
-const StyledGrid = styled.div`
+const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
-  padding-top: 30px;
 `;
 
-const StyledUl = styled.ul`
-  display: flex;
-  background-color: green;
-  height: 350px;
-  justify-content: space-around;
-  align-items: center;
-  list-style: none;
-  img {
-    width: 200px;
-    height: auto;
-    object-fit: contain;
-  }
-  li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+const Title = styled.h2`
+    font-size: 2rem;
+    margin: 30px 0 20px;
+    font-weight: normal;
 `;
 
 export default function NewProducts({ newProducts }) {
   return (
     <Center>
-      <StyledGrid>
+      <Title>New Arrivals</Title>
+      <ProductsGrid>
         {newProducts &&
           newProducts.map((newProduct) => (
             <ProductBox key={newProduct._id} {...newProduct} />
           ))}
-      </StyledGrid>
+      </ProductsGrid>
     </Center>
   );
 }
