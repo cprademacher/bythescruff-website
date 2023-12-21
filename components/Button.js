@@ -9,7 +9,7 @@ export const ButtonStyle = css`
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   transition: transform 0.1s ease-in-out;
 
@@ -21,6 +21,14 @@ export const ButtonStyle = css`
     height: 16px;
     margin-right: 5px;
   }
+
+  ${(props) =>
+    props.block &&
+    css`
+      display: block;
+      width: 100%;
+    `}
+
   ${(props) =>
     props.white &&
     !props.outline &&
@@ -35,6 +43,22 @@ export const ButtonStyle = css`
       background-color: transparent;
       color: #fff;
       border: 1px solid white;
+    `}
+
+    ${(props) =>
+    props.black &&
+    !props.outline &&
+    css`
+      background-color: #000;
+      color: #fff;
+    `}
+    ${(props) =>
+    props.black &&
+    props.outline &&
+    css`
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #000;
     `}
   ${(props) =>
     props.primary &&
