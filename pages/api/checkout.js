@@ -25,9 +25,17 @@ export default async function handler(req, res) {
     const productInfo = productsInfo.find(
       (p) => p._id.toString() === productId
     );
+
+    if (!productInfo) {
+      // Handle the case where productInfo is not found
+      console.error(`Product info not found for product ID: ${productId}`);
+      continue; // Skip to the next iteration
+    }
+
     const quantity = productsIds.filter((id) => id === productId)?.length || 0;
 
-    const totalPrice = quantity * productInfo.price;
+    const totalPrice = productInfo.price;
+    const formattedTotalPrice = Math.round(totalPrice.toFixed(2) * 100);
 
     if (quantity > 0 && productInfo) {
       line_items.push({
@@ -35,7 +43,7 @@ export default async function handler(req, res) {
         price_data: {
           currency: "USD",
           product_data: { name: productInfo.title },
-          unit_amount: Math.round(totalPrice.toFixed(2) * 100),
+          unit_amount: formattedTotalPrice,
         },
       });
     }
