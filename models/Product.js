@@ -1,6 +1,7 @@
 import { Category } from "@/models/Category";
 
 import mongoose, { model, Schema, models } from "mongoose";
+import { SSG_FALLBACK_EXPORT_ERROR } from "next/dist/lib/constants";
 
 const ProductSchema = new Schema(
   {
