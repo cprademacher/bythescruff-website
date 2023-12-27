@@ -9,7 +9,6 @@ import styled from "styled-components";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
-import { useRouter } from "next/router";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -75,7 +74,10 @@ export default function CartPage() {
   }, [cartProducts]);
 
   useEffect(() => {
-    if (router.asPath.includes("success")) {
+    if (typeof window === "undefined") {
+      return;
+    }
+    if (window?.location.href.includes("success")) {
       clearCart();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,8 +90,6 @@ export default function CartPage() {
   function lessOfThisProduct(id) {
     removeProduct(id);
   }
-
-  const router = useRouter();
 
   async function goToPayment() {
     const response = await axios.post("/api/checkout", {
@@ -112,19 +112,26 @@ export default function CartPage() {
     total += price;
   }
 
-  return router.asPath.includes("success") ? (
-    <>
-      <Header />
-      <ColumnsWrapper>
-        <Center>
-          <Box>
-            <h1>Thanks for your order!</h1>
-            <p>We will email you when your order is shipped!</p>
-          </Box>
-        </Center>
-      </ColumnsWrapper>
-    </>
-  ) : (
+  if (
+    typeof window !== "undefined" &&
+    window.location.href.includes("success")
+  ) {
+    return (
+      <>
+        <Header />
+        <ColumnsWrapper>
+          <Center>
+            <Box>
+              <h1 suppressHydrationWarning>Thanks for your order!</h1>
+              <p>We will email you when your order is shipped!</p>
+            </Box>
+          </Center>
+        </ColumnsWrapper>
+      </>
+    );
+  }
+
+  return (
     <>
       <Header />
       <Center>
