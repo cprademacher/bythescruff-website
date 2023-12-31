@@ -10,7 +10,7 @@ export default function HomePage({ featuredProduct, newProducts }) {
     <div>
       <Header />
       <Featured product={featuredProduct} />
-      <NewProducts newProducts={newProducts} />
+      <NewProducts products={newProducts} />
     </div>
   );
 }
@@ -21,8 +21,10 @@ export async function getServerSideProps() {
   const featuredProduct = await Product.findById(featuredProductId);
   const newProducts = await Product.find({}, null, {
     sort: { _id: -1 },
-    limit: 6,
+    limit: 3,
   });
+
+  console.log(newProducts);
   return {
     props: {
       featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),
