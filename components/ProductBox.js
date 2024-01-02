@@ -6,7 +6,13 @@ import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "@/components/CartContext";
 
-const ProductWrapper = styled.div``;
+const ProductWrapper = styled.div`
+  max-width: 60%;
+  margin: 5px auto;
+  @media screen and (min-width: 768px) {
+    max-width: 100%;
+  }
+`;
 
 const WhiteBox = styled(Link)`
   background-color: #fff;
