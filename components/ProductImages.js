@@ -1,9 +1,19 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-const Image = styled.img`
-  width: 100%;
+const BigImage = styled.img`
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+`;
+
+const BigImageWrapper = styled.div`
+  text-align: center;
+`;
+
+const LittleImages = styled.img`
   max-height: 100%;
+  object-fit: contain;
 `;
 
 const ImageButtons = styled.div`
@@ -15,6 +25,10 @@ const ImageButtons = styled.div`
 
 const ImageButton = styled.div`
   border: 2px solid #ccc;
+  ${(props) =>
+    props.active
+      ? "border-color: #ccc;"
+      : "border-color: transparent; opacity: 0.9;"}
   height: 75px;
   padding: 5px;
   cursor: pointer;
@@ -27,11 +41,17 @@ export default function ProductImages({ images }) {
 
   return (
     <>
-      <Image src={selectedImage} alt="basic" />
+      <BigImageWrapper>
+        <BigImage src={selectedImage} alt="basic" />
+      </BigImageWrapper>
       <ImageButtons>
         {images.map((image) => (
-          <ImageButton onClick={() => setSelectedImage(image)} key={image.id}>
-            <Image src={image} alt="hello" />
+          <ImageButton
+            active={image === selectedImage}
+            onClick={() => setSelectedImage(image)}
+            key={image}
+          >
+            <LittleImages src={image} alt="hello" />
           </ImageButton>
         ))}
       </ImageButtons>

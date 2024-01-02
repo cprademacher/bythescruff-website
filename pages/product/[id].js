@@ -1,12 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
+import Button from "@/components/Button";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import ProductImages from "@/components/ProductImages";
 import Title from "@/components/Title";
 import WhiteBox from "@/components/WhiteBox";
+import CartIcon from "@/components/icons/CartIcon";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import styled from "styled-components";
+import { useContext } from "react";
+import { CartContext } from "@/components/CartContext";
 
 const ColWrapper = styled.div`
   display: grid;
@@ -15,7 +19,19 @@ const ColWrapper = styled.div`
   margin-top: 40px;
 `;
 
+const PriceRow = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+`;
+
+const Price = styled.span`
+  font-size: 1.5rem;
+`;
+
 export default function ProductPage({ product }) {
+  const { addProduct } = useContext(CartContext);
+
   return (
     <>
       <Header />
@@ -27,6 +43,17 @@ export default function ProductPage({ product }) {
           <div>
             <Title>{product.title}</Title>
             <p>{product.description}</p>
+            <PriceRow>
+              <div>
+                <Price>${product.price}</Price>
+              </div>
+              <div>
+                <Button primary={1} onClick={() => addProduct(product._id)}>
+                  <CartIcon />
+                  Add to cart
+                </Button>
+              </div>
+            </PriceRow>
           </div>
         </ColWrapper>
       </Center>
