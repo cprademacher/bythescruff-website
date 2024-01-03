@@ -12,9 +12,12 @@ import Input from "@/components/Input";
 
 const ColumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   margin-top: 40px;
+  @media screen and (min-width: 786px) {
+    grid-template-columns: 1.4fr 0.6fr;
+  }
 `;
 
 const Box = styled.div`
@@ -42,6 +45,11 @@ const ProductImageBox = styled.div`
     max-width: 80px;
     max-height: 80px;
   }
+
+  @media screen and (max-width: 786px) {
+    max-width: 60px;
+    max-heigh: 60px;
+  }
 `;
 
 const QuantityLabel = styled.span`
@@ -51,6 +59,16 @@ const QuantityLabel = styled.span`
 const CityHolder = styled.div`
   display: flex;
   gap: 5px;
+`;
+
+const PriceAndButtons = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export default function CartPage() {
@@ -68,9 +86,11 @@ export default function CartPage() {
     if (cartProducts.length > 0) {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
         setProducts(response.data);
+        localStorage.setItem("cart", JSON.stringify(cartProducts));
       });
     } else {
       setProducts([]);
+      localStorage.removeItem("cart");
     }
   }, [cartProducts]);
 
@@ -157,18 +177,24 @@ export default function CartPage() {
                         {product.title}
                       </ProductInfoCell>
                       <td>
-                        <Button onClick={() => lessOfThisProduct(product._id)}>
-                          -
-                        </Button>
-                        <QuantityLabel>
-                          {
-                            cartProducts.filter((id) => id === product._id)
-                              .length
-                          }
-                        </QuantityLabel>
-                        <Button onClick={() => moreOfThisProduct(product._id)}>
-                          +
-                        </Button>
+                        <PriceAndButtons>
+                          <Button
+                            onClick={() => lessOfThisProduct(product._id)}
+                          >
+                            -
+                          </Button>
+                          <QuantityLabel>
+                            {
+                              cartProducts.filter((id) => id === product._id)
+                                .length
+                            }
+                          </QuantityLabel>
+                          <Button
+                            onClick={() => moreOfThisProduct(product._id)}
+                          >
+                            +
+                          </Button>
+                        </PriceAndButtons>
                       </td>
                       <td>
                         $

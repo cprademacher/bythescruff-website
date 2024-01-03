@@ -18,6 +18,7 @@ const ColWrapper = styled.div`
   @media screen and (min-width: 768px) {
     grid-template-columns: 0.8fr 1.2fr;
   }
+  width: 100%;
   gap: 40px;
   margin: 40px 0;
 `;
@@ -26,6 +27,7 @@ const PriceRow = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
+  justify-content: center;
 `;
 
 const Price = styled.span`
