@@ -1,7 +1,7 @@
-# ByTheScruff Website
+# ECommerce Website
 
 ## Description
-ByTheScruff is a cutting-edge eCommerce platform built with Next.js, offering a seamless shopping experience. Our site integrates Stripe for secure payment processing, utilizes MongoDB for robust data management, leverages Axios for efficient network requests, and employs Styled-Components for elegant styling.
+This ECommerce Website is a cutting-edge eCommerce platform built with Next.js, offering a seamless shopping experience. Our site integrates Stripe for secure payment processing, utilizes MongoDB for robust data management, leverages Axios for efficient network requests, and employs Styled-Components for elegant styling.
 
 ## Features
 - Next.js Framework: Fast and scalable server-side rendering.
