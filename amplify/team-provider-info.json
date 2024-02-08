@@ -10,6 +10,14 @@
       "StackName": "amplify-ecommercewebsite-dev-140436",
       "StackId": "arn:aws:cloudformation:us-east-1:880587507774:stack/amplify-ecommercewebsite-dev-140436/4a0a1f40-c6bd-11ee-8595-12cdac20c085",
       "AmplifyAppId": "d37a1fbqmd1nuv"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d37a1fbqmd1nuv",
+          "type": "manual"
+        }
+      }
     }
   }
 }
