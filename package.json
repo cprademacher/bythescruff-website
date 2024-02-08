@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-amplify/adapter-nextjs": "^1.0.15",
+    "aws-amplify": "^6.0.15",
     "axios": "^1.6.2",
     "micro": "^10.0.1",
     "mongoose": "^8.0.3",
